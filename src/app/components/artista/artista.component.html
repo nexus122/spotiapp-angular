@@ -1,1 +1,50 @@
-<p>artista works!</p>
+<app-loading *ngIf="loading"></app-loading>
+
+<div *ngIf="!loading" class="md:flex bg-white rounded-lg p-6 animated fadeIn">
+    <img class="h-16 w-16 md:h-24 md:w-24 rounded-full mx-auto md:mx-0 md:mr-6" [src]="artista.images | noimage"
+        [alt]="artista.name">
+    <div class="text-center md:text-left">
+        <h2 class="text-lg">{{artista.name}}</h2>
+
+        <div class="text-purple-500">
+            <a [href]="artista.external_urls.spotify" target="_blank">
+                Ir al artista
+            </a>
+        </div>
+
+        <div class="text-purple-500">
+            <button routerLink="/search" target="_blank">
+                Volver
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<div class="flex">
+    <div class="col">
+        <table class="w-screen table-auto">
+
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">Foto</th>
+                    <th class="px-4 py-2">Album</th>
+                    <th class="px-4 py-2">Cancion</th>
+                    <th class="px-4 py-2">Vista Previa</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let truck of topTracks">
+                    <td class="border px-4 py-2"><img [src]="truck.album.images | noimage" alt="" class="object-scale-down w-20"></td>
+                    <td class="border px-4 py-2">{{truck.album.name}}</td>                    
+                    <td class="border px-4 py-2">{{truck.name}}</td>
+                    <!--<td class="border px-4 py-2"><audio [src]="truck.preview_url" controls></audio></td>-->
+                    <iframe [src]="truck.uri | domseguro" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                </tr>
+            </tbody>
+
+
+        </table>
+    </div>
+</div>

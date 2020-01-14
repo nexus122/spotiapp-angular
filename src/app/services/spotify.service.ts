@@ -12,22 +12,43 @@ export class SpotifyService {
     console.log("Spotify service listo ! ")
   }
 
-  getNewReleases(){
+  getQuery(query:string){
+    const url = `https://api.spotify.com/v1/${query}`;
 
     const headers = new HttpHeaders({
-      'Authorization': "Bearer BQBsasl7xnFKYar8gag-mlEJloCjXPdWcIMFoTwzLM__IPJ9U91olyZLYdB1rdzaRaorhncvzymFv5md-tY"
+      'Authorization': "Bearer BQCugR28qDcZ-pO_uZfFZQg6_XwonHlV9t2IfU_Rg3ua5utkFmhcqNaPY6BMsA_0Lk9Y9CQX3fqRcRkPefoB0TKlZo0S8IlS-uJM_ntjHpFIqSmkll4a5IkyItuAEhtH0gt5bivCyEwjQfI"
     });
 
-    return this.http.get("https://api.spotify.com/v1/browse/new-releases", {headers} )
-      .pipe(map(data => data['albums'].items ));   
+    return this.http.get(url, {headers});
+
   }
 
-  getArtista( termino: string ){
-    const headers = new HttpHeaders({ 
-      'Authorization': "Bearer BQBsasl7xnFKYar8gag-mlEJloCjXPdWcIMFoTwzLM__IPJ9U91olyZLYdB1rdzaRaorhncvzymFv5md-tY"
-    });
+  /* Funcion para llamar a los albums */ 
+  getNewReleases(){
 
-    return this.http.get(`https://api.spotify.com/v1/search?q=${termino}&type=artist`, {headers} )
-      .pipe(map(data => data["artists"].items ));
+    return this.getQuery("browse/new-releases")
+      .pipe(map(data => data["albums"].items )); 
   }
+
+  /* Funcion para llamar a los artistas */
+  getArtistas( termino: string ){
+
+    return this.getQuery(`search?q=${termino}&type=artist`)
+      .pipe(map(data => data["artists"].items )); 
+  }
+
+  /* Funcion para llamar a un artista especifico */
+  getArtista( id: string ){
+
+    return this.getQuery(`artists/${ id }`);
+      //.pipe(map(data => data["artists"].items )); 
+  }
+
+  /* Funcion para llamar a un artista especifico */
+  getTopTraks( id: string ){
+
+    return this.getQuery(`artists/${ id }/top-tracks?country=us`)
+      .pipe(map(data => data["tracks"] )); 
+  }
+
 }

@@ -12,16 +12,18 @@ export class SearchComponent implements OnInit {
   constructor( private spotify: SpotifyService ) { }
 
   artistas:any[] = [];
-
+  loading: boolean;
   ngOnInit() {
   }
 
-  buscar( termino: string ){
+  buscar( termino: string ){    
     console.log("Termino: ", termino);
-    this.spotify.getArtista(termino)
+    this.loading = true;
+    this.spotify.getArtistas(termino)
       .subscribe( data => {        
         console.log(data);        
-          this.artistas = data               
+          this.artistas = data         
+          this.loading = false;      
       })
   };
 
