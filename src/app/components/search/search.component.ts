@@ -16,11 +16,10 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  buscar( termino: string ){    
-    console.log("Termino: ", termino);
+  async buscar( termino: string ){        
     this.loading = true;
-    this.spotify.getArtistas(termino)
-      .subscribe( data => {        
+    const obs = await this.spotify.getArtistas(termino);
+      obs.subscribe( data => {        
         console.log(data);        
           this.artistas = data         
           this.loading = false;      

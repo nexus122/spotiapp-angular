@@ -13,31 +13,30 @@ export class ArtistaComponent implements OnInit {
   topTracks: any[] = [];
 
   loading: boolean;
-  constructor( private route:ActivatedRoute,
-               private spotify: SpotifyService) {
-    this.route.params.subscribe(params=>{
+  constructor(private route: ActivatedRoute,
+    private spotify: SpotifyService) {
+    this.route.params.subscribe(params => {
       console.log(params.id);
       this.getArtista(params['id']);
       this.getTopTracks(params['id']);
     })
   }
 
-  getArtista(id:string){
+  async getArtista(id: string) {
     this.loading = true;
-    this.spotify.getArtista(id)
-      .subscribe(artista =>{
-          console.log(artista);
-          this.artista = artista;
-          this.loading = false;
-      })
+    const obs = await this.spotify.getArtista(id);
+    obs.subscribe(artista => {
+      this.loading = false;
+      this.artista = artista;
+    });
   }
 
-  getTopTracks(id:string){
-    this.spotify.getTopTraks( id )
-      .subscribe(topTracks => {
-        console.log(topTracks);
-        this.topTracks = topTracks;
-      })
+  async getTopTracks(id: string) {
+    const obs = await this.spotify.getTopTraks(id);
+    obs.subscribe(topTracks => {
+      console.log(topTracks);
+      this.topTracks = topTracks;
+    })
   }
 
   ngOnInit() {
