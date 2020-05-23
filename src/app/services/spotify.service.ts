@@ -15,7 +15,7 @@ export class SpotifyService {
   }
 
   getToken() {
-    const url = `https://spotiapp-angular.herokuapp.com/spotify/47f6dcaf1ab7429c80809a2f25f138e3/c798010b80ad496c98ff7e23e9656ffc`;
+    const url = `https://spotiapp-angular.herokuapp.com/spotify/fb8dda8be48d409e99a93d4c296afdbb/309ab99d163949e7b6e07c5ddecf3314`;
  
     const prom = this.http.get(url).toPromise().then((data: any) => data.access_token);
     return prom;

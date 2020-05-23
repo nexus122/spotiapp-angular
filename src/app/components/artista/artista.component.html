@@ -21,9 +21,9 @@
     </div>
 </div>
 
-<div class="flex">
-    <div class="col pl-5">
-        <table class="w-screen table-auto">
+<div class="flex w-screen">
+    <div class="col pl-5 w-full">
+        <table class="w-full table-auto">
 
             <thead>
                 <tr>
@@ -40,7 +40,7 @@
                     <td class="border px-4 py-2">{{truck.album.name}}</td>                    
                     <td class="border px-4 py-2">{{truck.name}}</td>
                     <!--<td class="border px-4 py-2"><audio [src]="truck.preview_url" controls></audio></td>-->
-                    <iframe [src]="truck.uri | domseguro" width="70%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    <iframe [src]="truck.uri | domseguro" width="95%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                 </tr>
             </tbody>
 
