@@ -16,13 +16,12 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  async buscar( termino: string ){        
-    this.loading = true;
-    const obs = await this.spotify.getArtistas(termino);
-      obs.subscribe( data => {        
-        console.log(data);        
-          this.artistas = data         
-          this.loading = false;      
+  async buscar( termino: string ){ // Componente de busqueda        
+    this.loading = true; // El loading se muestra
+    const obs = await this.spotify.getArtistas(termino); // Esta funcion es asincrona y espera a que se carguen los datos para continuar
+      obs.subscribe( data => { // Nos subscribimos a los datos.               
+          this.artistas = data; // Cargamos los datos en una variable global         
+          this.loading = false; // Ocultamos el gif de carga     
       })
   };
 

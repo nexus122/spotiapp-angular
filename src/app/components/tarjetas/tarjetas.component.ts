@@ -12,18 +12,14 @@ export class TarjetasComponent implements OnInit {
 
   constructor( private router:Router) { }
 
-  verArtista( item: any ){
-    console.log(item);
+  verArtista( item: any ){ // Mostrar el artista    
     let artistaId;
-
     if(item.type == "artist"){
       artistaId = item.id;
     }else{
       artistaId = item.artists[0].id;      
-    }
-    console.log(artistaId);
+    }    
     this.router.navigate(['/artist',artistaId]);
-
   }
 
   ngOnInit() {

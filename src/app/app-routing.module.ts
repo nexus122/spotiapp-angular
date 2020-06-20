@@ -6,11 +6,11 @@ import { ArtistaComponent } from './components/artista/artista.component';
 
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: 'search', component: SearchComponent},
-  {path: 'artist/:id', component: ArtistaComponent},
-  {path: '', pathMatch: 'full', redirectTo: 'home'},
-  {path: '**', pathMatch: 'full', redirectTo: 'home'}
+  {path: 'home', component: HomeComponent}, // Ruta para el componente home-
+  {path: 'search', component: SearchComponent}, // Ruta para el componente buscador.
+  {path: 'artist/:id', component: ArtistaComponent}, // Ruta para el componente artista, se envia tambien una id como parametro para saber que artista cargar
+  {path: '', pathMatch: 'full', redirectTo: 'home'}, // Ruta que lleva al componente home por defecto si no coincide con ninguna anterior
+  {path: '**', pathMatch: 'full', redirectTo: 'home'} // Ruta que lleva al componente home si no coincide con ninguna anterior
 ];
 
 @NgModule({

@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NoimagePipe implements PipeTransform {
 
-  transform(images: any[] ): string {
+  transform(images: any[] ): string { // Este pipe actua si entre los datos no se encuentra ninguna imagen.
 
     if(!images){
       return "https://cdn.shopify.com/s/files/1/1155/5150/t/22/assets/default-image.jpg?202";
