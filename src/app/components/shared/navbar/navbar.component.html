@@ -17,7 +17,12 @@
         </a>
         <a routerLink="search" class="block inline-block mt-0 text-teal-200 hover:text-white mr-4" routerLinkActive="active">
           Search
-        </a>    
+        </a>                       
       </div>
     </div>
+    <div class="select">
+      <select (change)="onNavigate($event.target.value)" name="country" id="country">
+        <option class="option" *ngFor="let pais of paises" [value]="pais[0]"><a>{{pais[1]}}</a></option>
+      </select>       
+  </div>
   </nav>
