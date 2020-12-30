@@ -12,6 +12,7 @@ export class SpotifyService { // Es el servicio para pedirle informacion a Spoti
     console.log("Spotify service listo ! "); // Cuando se carga la api
     var auth: any[];    
     var result: any;
+    var country: any;
   }
   /* Esta funcion nos devuelve el token para poder hacer consultas de spotify */
   getToken() {
@@ -35,6 +36,12 @@ async getQuery(query: string) { //Esto es la base para generar las consultas, es
   /* Funcion para llamar a los albums */
   async getNewReleases() { // Esta funcion llama los nuevos albums que estan ahora de moda, llama a 20.
     const obs = await this.getQuery('browse/new-releases?limit=20'); //Aqui llamamos a getQuery() para que nos devuelva el token y los albums nuevos
+    return obs.pipe(map((data: any) => data.albums.items)); // Con esto lelvamos la informacion hasta el componente
+ }
+
+  /* Funcion para llamar a los albums de un pais especifico */
+  async getNewReleasesCountry(id:string) { // Esta funcion llama los nuevos albums que estan ahora de moda, llama a 20.
+    const obs = await this.getQuery(`browse/new-releases?country=${id}`); //Aqui llamamos a getQuery() para que nos devuelva el token y los albums nuevos
     return obs.pipe(map((data: any) => data.albums.items)); // Con esto lelvamos la informacion hasta el componente
  }
 
